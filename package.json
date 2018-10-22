@@ -1,0 +1,26 @@
+{
+    "name": "vscode-mqsc",
+    "displayName": "vscode-mqsc",
+    "description": "Language support for MQ",
+    "version": "0.0.1",
+    "publisher": "toto",
+    "engines": {
+        "vscode": "^1.28.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "mqsc",
+            "aliases": ["MQSeries", "mqsc"],
+            "extensions": ["mqsc"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "mqsc",
+            "scopeName": "source.mqsc",
+            "path": "./syntaxes/mqsc.tmLanguage.json"
+        }]
+    }
+}
