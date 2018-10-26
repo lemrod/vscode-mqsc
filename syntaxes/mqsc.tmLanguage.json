@@ -13,7 +13,7 @@
 		"keywords": {
 			"patterns": [
 				{
-					"match": "^\\*.*",
+					"match": "^\\s*\\*.*",
 					"name": "comment"
 				},
 				{
@@ -34,67 +34,178 @@
 				},
 				{
 					"match": "^\\s*(?i:((ALTER|ALT)\\s*(AUTHINFO|CHANNEL|CHL|COMMINFO|LISTENER|NAMELIST|NL|PROCESS|PRO|QALIAS|QA|QLOCAL|QL|QMGR|QMODEL|QM|QREMOTE|QR|SERVICE|SUB|TOPIC)))\\b",
-					"name": "keyword"
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(CLEAR\\s*(QLOCAL|QL|TOPICSTR)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((CLEAR)\\s*(QLOCAL|QL|TOPICSTR)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"match": "^\\s*(?i:((DEFINE|DEF)\\s*(AUTHINFO|CHANNEL|CHL|COMMINFO|LISTENER|NAMELIST|NL|PROCESS|PRO|QALIAS|QA|QLOCAL|QL|QMODEL|QM|QREMOTE|QR|SERVICE|SUB|TOPIC)))\\b",
-					"name": "keyword"
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(DELETE\\s*(AUTHINFO|AUTHREC|CHANNEL|CHL|COMMINFO|LISTENER|NAMELIST|NL|POLICY|POL|PROCESS|PRO|QALIAS|QA|QLOCAL|QL|QMODEL|QM|QREMOTE|QR|SERVICE|SUB|TOPIC)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((DELETE)\\s*(AUTHINFO|AUTHREC|CHANNEL|CHL|COMMINFO|LISTENER|NAMELIST|NL|POLICY|POL|PROCESS|PRO|QALIAS|QA|QLOCAL|QL|QMODEL|QM|QREMOTE|QR|SERVICE|SUB|TOPIC)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"match": "^\\s*(?i:((DISPLAY|DIS)\\s*(AUTHINFO|AUTHREC|AUTHSERV|CHANNEL|CHL|CHLAUTH|CHSTATUS|CLUSQMGR|COMMINFO|CONN|ENTAUTH|LISTENER|LSSTATUS|NAMELIST|NL|POLICY|POL|PROCESS|PRO|PUBSUB|QALIAS|QA|QCLUSTER|QC|QLOCAL|QL|QMGR|QMODEL|QM|QMSTATUS|QREMOTE|QR|QSTATUS|QS|QUEUE|Q|SBSTATUS|SERVICE|SUB|SVSTATUS|TCLUSTER|TOPIC|TPSTATUS)))\\b",
-					"name": "keyword"
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"match": "^\\s*(?i:(END|EXIT|QUIT))\\b",
 					"name": "keyword"
 				},
 				{
-					"match": "^\\s*(?i:(PING\\s*(CHANNEL|QMGR)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((PING)\\s*(CHANNEL|QMGR)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(PURGE\\s*(CHANNEL)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((PURGE)\\s*(CHANNEL)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"match": "^\\s*(?i:((REFRESH|REF)\\s*(CLUSTER|QMGR|SECURITY)))\\b",
-					"name": "keyword"
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(RESET\\s*(CLUSTER|QMGR|CHANNEL)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((RESET)\\s*(CLUSTER|QMGR|CHANNEL)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(RESOLVE\\s*(CHANNEL)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((RESOLVE)\\s*(CHANNEL)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(RESUME\\s*QMGR\\s*(CLUSTER|CLUSNL)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((RESUME)\\s*(QMGR)\\s*(CLUSTER|CLUSNL)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						},
+						"4": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(SET\\s*(AUTHREC|CHLAUTH|POLICY)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((SET)\\s*(AUTHREC|CHLAUTH|POLICY)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(START\\s*(CHANNEL|CHINIT|LISTENER|SERVICE)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((START)\\s*(CHANNEL|CHINIT|LISTENER|SERVICE)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(STOP\\s*(CHANNEL|CONNAUTH|LISTENER|SERVICE)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((STOP)\\s*(CHANNEL|CONNAUTH|LISTENER|SERVICE)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
-					"match": "^\\s*(?i:(SUSPEND\\s*QMGR\\s*(CLUSTER|CLUSNL)))\\b",
-					"name": "keyword"
+					"match": "^\\s*(?i:((SUSPEND)\\s*(QMGR)\\s*(CLUSTER|CLUSNL)))\\b",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						},
+						"3": {
+							"name": "entity.name.type"
+						},
+						"4": {
+							"name": "entity.name.type"
+						}
+					}
 				}
 			]
 		},
