@@ -3,35 +3,109 @@
 	"name": "MQSeries",
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#comments"
 		},
 		{
-			"include": "#strings"
+			"include": "#constants"
+		},
+		{
+			"include": "#values"
+		},
+		{
+			"include": "#keywords"
 		}
 	],
 	"repository": {
-		"keywords": {
+		"comments": {
 			"patterns": [
 				{
 					"match": "^\\s*\\*.*",
-					"name": "comment"
+					"name": "comment.line"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"match": "\\$[a-zA-Z0-9_]+",
+					"name": "variable.other.normal"
 				},
+				{
+					"match": "\\${[a-zA-Z0-9_]+}",
+					"name": "variable.other.bracket"
+				},
+				{
+					"match": "%[a-zA-Z0-9_]+%",
+					"name": "variable.other.percent"
+				},
+				{
+					"match": "<[a-zA-Z0-9_]+>",
+					"name": "variable.other.chevron"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
 				{
 					"match": "(\\+|-)",
-					"name": "constant.character.escape"
+					"name": "punctuation.separator.continuation"
+				}
+			]
+		},
+		"values": {
+			"patterns": [
+				{
+					"begin": "\\(\\s*",
+					"beginCaptures": {
+						"0": {
+							"name": "constant.character.escape"
+						}
+					},
+					"end": "\\s*\\)",
+					"endCaptures": {
+						"0": {
+							"name": "constant.character.escape"
+						}
+					},
+					"name": "constant.other.color",
+					"patterns": [
+
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#variables"
+						}
+					]
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"begin": "'",
+					"end": "'",
+					"name": "string.quoted.single",
+					"patterns": [
+						{
+							"include": "#variables"
+						}
+					]
 				},
 				{
-					"match": "(?<=\\()\\s*\\'.*?\\'\\s*(?=\\))",
-					"name": "string"
-				},
-				{
-					"match": "(?<=\\()\\s*\".*?\"\\s*(?=\\))",
-					"name": "string"
-				},
-				{
-					"match": "(?<=\\()\\s*[^'\")].*?\\s*(?=\\))",
-					"name": "constant.other.color"
-				},
+					"begin": "\"",
+					"end": "\"",
+					"name": "string.quoted.double",
+					"patterns": [
+						{
+							"include": "#variables"
+						}
+					]
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
 				{
 					"match": "^\\s*(?i:((ALTER|ALT)\\s*(AUTHINFO|CHANNEL|CHL|COMMINFO|LISTENER|NAMELIST|NL|PROCESS|PRO|QALIAS|QA|QLOCAL|QL|QMGR|QMODEL|QM|QREMOTE|QR|SERVICE|SUB|TOPIC)))\\b",
 					"captures": {
@@ -206,17 +280,6 @@
 							"name": "entity.name.type"
 						}
 					}
-				}
-			]
-		},
-		"strings": {
-			"name": "string.quoted.double.mqsc",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.mqsc",
-					"match": "\\\\."
 				}
 			]
 		}
