@@ -95,12 +95,7 @@
 				{
 					"begin": "\"",
 					"end": "\"",
-					"name": "string.quoted.double",
-					"patterns": [
-						{
-							"include": "#variables"
-						}
-					]
+					"name": "invalid.illegal"
 				}
 			]
 		},
