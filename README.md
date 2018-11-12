@@ -10,7 +10,7 @@ syntax highlighting system.
 - `example.mqsc` = This file simply shows an example valid MQSC file
 - `test.mqsc` = This file is a more indepth test and includes valid and invalid syntax
 
-![screenshot](https://raw.githubusercontent.com/lemrod/vscode-mqsc/master/.vscode-test/example.png)
+![screenshot](https://raw.githubusercontent.com/lemrod/vscode-mqsc/master/images/example.png)
 
 ## Features
 

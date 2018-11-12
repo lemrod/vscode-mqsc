@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.1.2] - 2018-11-12
+
+Improve syntax
+
+- Doule quoted strings are now invalid
+- Comments preceeded by spaces or tabs are now invalid
+- Improved continuation line
+
 ## [0.1.1] - 2018-11-02
 
 - Add screenshot
