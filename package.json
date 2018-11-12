@@ -3,7 +3,7 @@
     "displayName": "MQSC",
     "description": "Language support for MQSC commands",
     "icon": "images/icon.png",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "publisher": "lemrod",
     "repository": "https://github.com/lemrod/vscode-mqsc",
     "engines": {
