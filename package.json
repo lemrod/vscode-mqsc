@@ -1,7 +1,8 @@
 {
     "name": "vscode-mqsc",
-    "displayName": "vscode-mqsc",
-    "description": "Language support for MQ",
+    "displayName": "MQSC",
+    "description": "Language support for MQSC commands",
+    "icon": "images/icon.png",
     "version": "0.1.1",
     "publisher": "lemrod",
     "repository": "https://github.com/lemrod/vscode-mqsc",
@@ -11,12 +12,15 @@
     "categories": [
         "Programming Languages"
     ],
+    "keywords": [
+        "MQ",
+        "mqsc"
+    ],
     "contributes": {
         "languages": [
             {
                 "id": "mqsc",
                 "aliases": [
-                    "MQSeries",
                     "mqsc"
                 ],
                 "extensions": [
