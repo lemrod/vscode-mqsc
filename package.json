@@ -2,9 +2,9 @@
     "name": "vscode-mqsc",
     "displayName": "vscode-mqsc",
     "description": "Language support for MQ",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "lemrod",
-	"repository": "https://github.com/lemrod/vscode-mqsc",
+    "repository": "https://github.com/lemrod/vscode-mqsc",
     "engines": {
         "vscode": "^1.28.0"
     },
@@ -12,16 +12,25 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "mqsc",
-            "aliases": ["MQSeries", "mqsc"],
-            "extensions": ["mqsc"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "mqsc",
-            "scopeName": "source.mqsc",
-            "path": "./syntaxes/mqsc.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "mqsc",
+                "aliases": [
+                    "MQSeries",
+                    "mqsc"
+                ],
+                "extensions": [
+                    "mqsc"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "mqsc",
+                "scopeName": "source.mqsc",
+                "path": "./syntaxes/mqsc.tmLanguage.json"
+            }
+        ]
     }
 }
