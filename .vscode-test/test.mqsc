@@ -17,14 +17,14 @@
 * standard command usage with string variants and a number
 ALTER LISTENER('SYSTEM.DEFAULT.LISTENER.TCP') TRPTYPE(TCP) PORT(1414) CONTROL(QMGR)
 START LISTENER("SYSTEM.DEFAULT.LISTENER.TCP")
-SET   CHLAUTH(TEST SPACES)
-  SET   AUTHREC(hello)
+SET CHLAUTH(TEST SPACES)
+SET AUTHREC(hello)
 
 * multi-line test
 SET CHLAUTH(PASSWORD.SVRCONN) TYPE(BLOCKUSER) USERLIST('nobody') +
-  DESCR('Allow privileged users on this channel')
+	DESCR('Allow privileged users on this channel')
 SET CHLAUTH(PASSWORD.SVRCONN) TYPE(BLOCKUSER) USERLIST('nobody') -
-  DESCR('Allow privileged users on this channel')
+	DESCR('Allow privileged users on this channel')
 
 * Invalid values (none should be highlighted)
 TEST( )
@@ -49,10 +49,10 @@ SUSPEND QMGR
 
 * Check multi line does not highlight keywords (known issue)
 SET CHLAUTH(THIS LINE SHOULD BE HIGHLIGHTED) +
-  ALTER AUTHINFO(THIS LINE SHOULD NOT BE HIGHLIGHTED)
+	ALTER AUTHINFO(THIS LINE SHOULD NOT BE HIGHLIGHTED)
 
 SET CHLAUTH(THIS LINE SHOULD BE HIGHLIGHTED) -
-  ALTER AUTHINFO(THIS LINE SHOULD NOT BE HIGHLIGHTED)
+	ALTER AUTHINFO(THIS LINE SHOULD NOT BE HIGHLIGHTED)
 
 * Key word highlighting (all should be highlighted)
 (DISABLED) (TRUE) (FALSE) (ENABLED) (YES) (NO) (ON) (OFF) (REQUIRED) (OPTIONAL)
