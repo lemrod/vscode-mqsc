@@ -4,6 +4,7 @@
     "description": "Language support for MQ",
     "version": "0.0.1",
     "publisher": "lemrod",
+	"repository": "https://github.com/lemrod/vscode-mqsc",
     "engines": {
         "vscode": "^1.28.0"
     },
