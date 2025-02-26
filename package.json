@@ -3,7 +3,7 @@
     "displayName": "vscode-mqsc",
     "description": "Language support for MQ",
     "version": "0.0.1",
-    "publisher": "toto",
+    "publisher": "lemrod",
     "engines": {
         "vscode": "^1.28.0"
     },
