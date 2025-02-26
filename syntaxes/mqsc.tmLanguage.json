@@ -3,112 +3,155 @@
 	"name": "MQSeries",
 	"patterns": [
 		{
-			"include": "#comments"
+			"include": "#comment"
 		},
 		{
-			"include": "#constants"
+			"include": "#continuation-block"
 		},
 		{
-			"include": "#values"
+			"include": "#value"
 		},
 		{
-			"include": "#keywords"
+			"include": "#keyword"
 		}
 	],
 	"repository": {
-		"comments": {
+		"comment": {
 			"patterns": [
 				{
-					"match": "^\\s*\\*.*",
-					"name": "comment.line"
+					"match": "^\\*.*",
+					"name": "comment.line.mqsc"
+				},
+				{
+					"match": "^\\s+\\*.*",
+					"name": "invalid.illegal.mqsc"
 				}
 			]
 		},
-		"variables": {
+		"variable": {
 			"patterns": [
 				{
-					"match": "\\$[a-zA-Z0-9_]+",
-					"name": "variable.other.normal"
+					"match": "\\$\\w+",
+					"name": "variable.other.normal.mqsc"
 				},
 				{
-					"match": "\\${[a-zA-Z0-9_]+}",
-					"name": "variable.other.bracket"
+					"match": "\\${\\w+}",
+					"name": "variable.other.bracket.mqsc"
 				},
 				{
-					"match": "%[a-zA-Z0-9_]+%",
-					"name": "variable.other.percent"
+					"match": "%\\w+%",
+					"name": "variable.other.percent.mqsc"
 				},
 				{
-					"match": "<[a-zA-Z0-9_]+>",
-					"name": "variable.other.chevron"
+					"match": "<\\w+>",
+					"name": "variable.other.chevron.mqsc"
 				}
 			]
 		},
-		"constants": {
+		"continuation": {
 			"patterns": [
 				{
-					"match": "(\\+|-)",
-					"name": "punctuation.separator.continuation"
+					"match": "([+-])(?:\\s*\\n)",
+					"name": "constant.character.escape.single.mqsc"
 				}
 			]
 		},
-		"values": {
+		"continuation-block": {
 			"patterns": [
 				{
-					"begin": "\\(\\s*",
+					"begin": "([+-])(?:\\s*\\n)",
 					"beginCaptures": {
-						"0": {
-							"name": "constant.character.escape"
+						"1": {
+							"name": "constant.character.escape.begin.mqsc"
 						}
 					},
-					"end": "\\s*\\)",
+					"end": "([^+-]?)(?:\\s*\\n)",
 					"endCaptures": {
-						"0": {
-							"name": "constant.character.escape"
+						"1": {
+							"name": "debug.constant.character.escape.end.mqsc"
 						}
 					},
-					"name": "constant.other.color",
+					"name": "debug.markup.underline",
 					"patterns": [
-
 						{
-							"include": "#strings"
+							"match": "([+-])(?:\\s*\\n)",
+							"name": "constant.character.escape.middle.mqsc"
 						},
 						{
-							"include": "#variables"
+							"include": "#value"
+						},
+						{
+							"include": "#comment"
 						}
 					]
 				}
 			]
 		},
-		"strings": {
+		"value": {
+			"patterns": [
+				{
+					"begin": "\\(\\s*",
+					"end": "\\s*\\)",
+					"contentName": "constant.other.color.mqsc",
+					"patterns": [
+						{
+							"include": "#continuation"
+						},
+						{
+							"include": "#string"
+						},
+						{
+							"include": "#variable"
+						},
+						{
+							"include": "$self"
+						}
+					]
+				}
+			]
+		},
+		"string": {
 			"patterns": [
 				{
 					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.mqsc"
+						}
+					},
 					"end": "'",
-					"name": "string.quoted.single",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.mqsc"
+						}
+					},
+					"name": "string.quoted.single.mqsc",
 					"patterns": [
 						{
-							"include": "#variables"
+							"include": "#continuation"
+						},
+						{
+							"include": "#variable"
 						}
 					]
 				},
 				{
 					"begin": "\"",
 					"end": "\"",
-					"name": "invalid.illegal"
+					"name": "invalid.illegal.mqsc"
 				}
 			]
 		},
-		"keywords": {
+		"keyword": {
 			"patterns": [
 				{
 					"match": "^\\s*(?i:((ALTER|ALT)\\s*(AUTHINFO|CHANNEL|CHL|COMMINFO|LISTENER|NAMELIST|NL|PROCESS|PRO|QALIAS|QA|QLOCAL|QL|QMGR|QMODEL|QM|QREMOTE|QR|SERVICE|SUB|TOPIC)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -116,10 +159,10 @@
 					"match": "^\\s*(?i:((CLEAR)\\s*(QLOCAL|QL|TOPICSTR)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -127,10 +170,10 @@
 					"match": "^\\s*(?i:((DEFINE|DEF)\\s*(AUTHINFO|CHANNEL|CHL|COMMINFO|LISTENER|NAMELIST|NL|PROCESS|PRO|QALIAS|QA|QLOCAL|QL|QMODEL|QM|QREMOTE|QR|SERVICE|SUB|TOPIC)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -138,10 +181,10 @@
 					"match": "^\\s*(?i:((DELETE)\\s*(AUTHINFO|AUTHREC|CHANNEL|CHL|COMMINFO|LISTENER|NAMELIST|NL|POLICY|POL|PROCESS|PRO|QALIAS|QA|QLOCAL|QL|QMODEL|QM|QREMOTE|QR|SERVICE|SUB|TOPIC)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -149,25 +192,25 @@
 					"match": "^\\s*(?i:((DISPLAY|DIS)\\s*(AUTHINFO|AUTHREC|AUTHSERV|CHANNEL|CHL|CHLAUTH|CHSTATUS|CLUSQMGR|COMMINFO|CONN|ENTAUTH|LISTENER|LSSTATUS|NAMELIST|NL|POLICY|POL|PROCESS|PRO|PUBSUB|QALIAS|QA|QCLUSTER|QC|QLOCAL|QL|QMGR|QMODEL|QM|QMSTATUS|QREMOTE|QR|QSTATUS|QS|QUEUE|Q|SBSTATUS|SERVICE|SUB|SVSTATUS|TCLUSTER|TOPIC|TPSTATUS)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
 				{
 					"match": "^\\s*(?i:(END|EXIT|QUIT))\\b",
-					"name": "keyword"
+					"name": "keyword.mqsc"
 				},
 				{
 					"match": "^\\s*(?i:((PING)\\s*(CHANNEL|QMGR)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -175,10 +218,10 @@
 					"match": "^\\s*(?i:((PURGE)\\s*(CHANNEL)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -186,10 +229,10 @@
 					"match": "^\\s*(?i:((REFRESH|REF)\\s*(CLUSTER|QMGR|SECURITY)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -197,10 +240,10 @@
 					"match": "^\\s*(?i:((RESET)\\s*(CLUSTER|QMGR|CHANNEL)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -208,10 +251,10 @@
 					"match": "^\\s*(?i:((RESOLVE)\\s*(CHANNEL)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -219,13 +262,13 @@
 					"match": "^\\s*(?i:((RESUME)\\s*(QMGR)\\s*(CLUSTER|CLUSNL)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						},
 						"4": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -233,10 +276,10 @@
 					"match": "^\\s*(?i:((SET)\\s*(AUTHREC|CHLAUTH|POLICY)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -244,10 +287,10 @@
 					"match": "^\\s*(?i:((START)\\s*(CHANNEL|CHINIT|LISTENER|SERVICE)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -255,10 +298,10 @@
 					"match": "^\\s*(?i:((STOP)\\s*(CHANNEL|CONNAUTH|LISTENER|SERVICE)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				},
@@ -266,13 +309,13 @@
 					"match": "^\\s*(?i:((SUSPEND)\\s*(QMGR)\\s*(CLUSTER|CLUSNL)))\\b",
 					"captures": {
 						"2": {
-							"name": "keyword"
+							"name": "keyword.mqsc"
 						},
 						"3": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						},
 						"4": {
-							"name": "entity.name.type"
+							"name": "entity.name.type.mqsc"
 						}
 					}
 				}

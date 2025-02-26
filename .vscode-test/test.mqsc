@@ -1,23 +1,96 @@
-* © Copyright IBM Corporation 2016
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-
 * comments start with * and should be highlighted appropriately
+    * comments shouldn't be preceeded by spaces
+	* comments shouldn't be preceeded by tabs
 
 * standard command usage with string variants and a number
 ALTER LISTENER('SYSTEM.DEFAULT.LISTENER.TCP') TRPTYPE(TCP) PORT(1414) CONTROL(QMGR)
 
 * multi-line test
+
+DEFINE QLOCAL ('X.Y.Z') +
+	DESCR('') +
+	DEFPSIST(${DEFPSIST}) +
+	MAXDEPTH(500000) +
+	MAXMSGL(4194304) +
+	MSGDLVSQ(PRIORITY) +
+	REPLACE
+
+DEFINE QLOCAL ('X.Y.Z') +
+	DESCR('') +
+	DEFPSIST(${DEFPSIST}) +
+	MAXDEPTH(500000) +
+	MAXMSGL(4194304) +
+	MSGDLVSQ(PRIORITY) +
+	REPLACE
+
+DEFINE QLOCAL ('X.Y.Z') +
+	DESCR('') +
+	DEFPSIST(${DEFPSIST}) +
+	MAXDEPTH(500000) +
+	MSGDLVSQ(PRIORITY) +
+	REPLACE +
+	MAXMSGL(4194304)
+
+DEFINE QLOCAL ('X.Y.Z') +
+	REPLACE +
+	DESCR('') +
+* zegzegzeg
+	MAXMSGL(4194304)
+
+DEFINE QLOCAL ('X.Y.Z') +
+	REPLACE +
+	DESCR('') +
+	MAXMSGL(4194304)
+
+DEFINE QL(FRED) +
+* this should be read until REPLACE and create queue FRED
+	+
+	REPLACE
+
+DEFINE QL(FRED) +
+* this should be read until REPLACE and create queue FRED
+
+REPLACE
+
+DEFINE QL(FRED) -
+* this should be read until REPLACE and create queue FRED
+
+REPLACE
+
+DEFINE QL(FRED) -
+* this should be read until REPLACE and create queue FRED
+
+REPLACE
+
+DEFINE QL(FR+
+* this should be read until REPLACE and create queue FRED
+	ED) +
+REPLACE
+
+DEFINE QL(FR-
+* this should be read until REPLACE and create queue FRED
+ED) -
+REPLACE
+
+
+DEFINE QL ('FR${E}${D}') +
+	DESCR ('Description for queue FR${E}${D}') +
+	REPLACE +
+	MAXMSGL(4194304)
+
+DEFINE QL ('FRED') +
+	DESCR ('Description +
+	for queue +
+	FRED') +
+	REPLACE -
+	MAXM+
+	SGL(419+
+	4304)
+
+('This is +
+multinline string +
+a string')
+
 SET CHLAUTH(PASSWORD.SVRCONN) TYPE(BLOCKUSER) USERLIST('nobody') +
 	DESCR('Allow privileged users on this channel')
 SET CHLAUTH(PASSWORD.SVRCONN) TYPE(BLOCKUSER) USERLIST('nobody') -
@@ -25,6 +98,7 @@ SET CHLAUTH(PASSWORD.SVRCONN) TYPE(BLOCKUSER) USERLIST('nobody') -
 
 * Check multi line does not highlight keywords (known issue)
 SET CHLAUTH(THIS LINE SHOULD BE HIGHLIGHTED) +
+	ALTER AUTHINFO(THIS LINE SHOULD NOT BE HIGHLIGHTED) +
 	ALTER AUTHINFO(THIS LINE SHOULD NOT BE HIGHLIGHTED)
 
 SET CHLAUTH(THIS LINE SHOULD BE HIGHLIGHTED) -
