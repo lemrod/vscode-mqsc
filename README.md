@@ -10,6 +10,8 @@ syntax highlighting system.
 - `example.mqsc` = This file simply shows an example valid MQSC file
 - `test.mqsc` = This file is a more indepth test and includes valid and invalid syntax
 
+![screenshot](https://raw.githubusercontent.com/lemrod/vscode-mqsc/master/.vscode-test/example.png)
+
 ## Features
 
 Although not part of the mqsc language, colorized placeholder like `<var>`, `%var%`, `$var`, `${var}` for templating.
@@ -20,17 +22,11 @@ None
 
 ## Extension Settings
 
+None
+
 ## Known Issues
 
-## Release Notes
-
-### 0.0.1
-
-Initial release
-
-### 0.0.2
-
-Fix README.md
+TBD
 
 ## License
 
